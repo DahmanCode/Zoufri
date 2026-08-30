@@ -114,14 +114,12 @@ export default async function MatchesPage() {
                 )}
               </div>
 
-              {/* Placeholder until messaging is built */}
-              <button
-                disabled
-                className="shrink-0 rounded-full border border-gray-200 px-4 py-2 text-sm text-gray-400 cursor-not-allowed"
-                title="Messaging coming soon"
+              <Link
+                href={`/matches/${profile.id}`}
+                className="shrink-0 rounded-full border border-gray-300 px-4 py-2 text-sm font-medium hover:bg-gray-50"
               >
                 Message
-              </button>
+              </Link>
             </div>
           )
         })}
