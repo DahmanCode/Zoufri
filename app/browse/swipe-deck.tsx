@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { recordSwipe } from './actions'
+import { createClient } from '@/lib/supabase/client'
 
 export type Candidate = {
   id: string
@@ -27,21 +27,33 @@ export default function SwipeDeck({ candidates }: { candidates: Candidate[] }) {
   const [index, setIndex] = useState(0)
   const [pending, setPending] = useState(false)
   const [matchBanner, setMatchBanner] = useState(false)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   const current = candidates[index]
 
   async function handleSwipe(action: 'like' | 'pass') {
     if (!current || pending) return
     setPending(true)
-    const result = await recordSwipe(current.id, action)
+    setErrorMsg(null)
+
+    const supabase = createClient()
+    const status = action === 'like' ? 'pending' : 'rejected'
+
+    const { data, error } = await supabase.rpc('record_swipe', {
+      target_id_param: current.id,
+      new_status: status,
+    })
+
     setPending(false)
 
-    if (result.error) {
-      alert(result.error)
+    if (error) {
+      setErrorMsg(error.message)
       return
     }
 
-    if (result.matched) {
+    const matched = Boolean((data as { matched?: boolean })?.matched)
+
+    if (matched) {
       setMatchBanner(true)
       setTimeout(() => setMatchBanner(false), 2500)
     }
@@ -49,21 +61,29 @@ export default function SwipeDeck({ candidates }: { candidates: Candidate[] }) {
     setIndex((i) => i + 1)
   }
 
+  // NOTE: the match banner must render regardless of whether there are
+  // more candidates left, since the swipe that triggers a match might
+  // also be the last candidate in the deck (exhausting the list).
+  const banner = matchBanner && (
+    <div className="rounded-lg bg-black text-white text-center py-3 font-medium mb-4">
+      🎉 It's a match!
+    </div>
+  )
+
   if (!current) {
     return (
-      <div className="rounded-xl border border-gray-200 p-8 text-center text-gray-500">
-        No more profiles right now — check back later.
+      <div>
+        {banner}
+        <div className="rounded-xl border border-gray-200 p-8 text-center text-gray-500">
+          No more profiles right now — check back later.
+        </div>
       </div>
     )
   }
 
   return (
     <div className="relative">
-      {matchBanner && (
-        <div className="absolute inset-x-0 -top-4 z-10 rounded-lg bg-black text-white text-center py-2 font-medium">
-          🎉 It's a match!
-        </div>
-      )}
+      {banner}
 
       <div className="rounded-2xl border border-gray-200 overflow-hidden">
         <div className="h-56 bg-gray-100 flex items-center justify-center text-gray-400">
@@ -109,6 +129,12 @@ export default function SwipeDeck({ candidates }: { candidates: Candidate[] }) {
           )}
         </div>
       </div>
+
+      {errorMsg && (
+        <p className="mt-3 text-sm text-red-600 border border-red-200 bg-red-50 rounded-lg p-3">
+          {errorMsg}
+        </p>
+      )}
 
       <div className="mt-4 flex justify-center gap-4">
         <button
