@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Inter, Fraunces } from "next/font/google";
+
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
   title: "Next.js + Supabase",
@@ -16,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans bg-paper text-ink antialiased`}>
+      <body className={`${inter.variable} ${fraunces.variable} font-sans bg-paper text-ink antialiased`}>
         {children}
       </body>
     </html>
