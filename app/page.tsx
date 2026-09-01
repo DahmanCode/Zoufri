@@ -15,21 +15,6 @@ export default function LandingBento() {
   return (
     <div className="bg-[#E2DAC5] text-[#211F1A]">
       <div className="max-w-[1240px] mx-auto px-6 pt-12 pb-24">
-        {/* NAV */}
-        <nav className="flex items-center justify-between mb-9">
-                    <Link href="/" className="font-display text-[22px] font-semibold flex items-center gap-2">
-            <span className="w-[26px] h-[26px] rounded-[7px] bg-[#1F4E5F] relative block after:content-[''] after:absolute after:inset-[6px] after:rounded-[3px] after:bg-[#C08A3E]" />
-            Zoufri
-          </Link>
-          <div className="hidden min-[720px]:flex gap-8 text-[15px] text-[#5B5748]">
-            <Link href={BROWSE_ROUTE} className="hover:text-[#211F1A] transition-colors">Browse</Link>
-            <a href="#how-it-works" className="hover:text-[#211F1A] transition-colors">How it works</a>
-            <Link href={ONBOARDING_ROUTE} className="hover:text-[#211F1A] transition-colors">List your place</Link>
-          </div>
-          <Link href={LOGIN_ROUTE} className="bg-[#211F1A] text-[#FFFDF8] px-[22px] py-[11px] rounded-full font-sans text-[14.5px] font-semibold inline-block">
-            Sign in
-          </Link>
-        </nav>
 
         {/* HERO GRID */}
         <div className="grid grid-cols-1 min-[860px]:grid-cols-[1.55fr_1fr] gap-5">
