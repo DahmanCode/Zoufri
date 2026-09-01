@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Fraunces, Plus_Jakarta_Sans } from "next/font/google";
+import SiteNav from "./components/site-nav";
 import "./globals.css";
 
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-display" });
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 
 export const metadata: Metadata = {
   title: "Next.js + Supabase",
@@ -18,7 +20,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${fraunces.variable} font-sans bg-paper text-ink antialiased`}>
+      <body className={`${inter.variable} ${fraunces.variable} ${jakarta.variable} font-sans bg-paper text-ink antialiased`}>
+        <SiteNav />
         {children}
       </body>
     </html>
