@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
+import { useSearchParams } from 'next/navigation'
 import { completeOnboarding, type OnboardingResult } from './actions'
 
 const initialState: OnboardingResult = {}
@@ -19,10 +20,16 @@ function SubmitButton({ label }: { label: string }) {
   )
 }
 
-export default function OnboardingPage() {
+function OnboardingForm() {
   const [state, formAction] = useFormState(completeOnboarding, initialState)
-  const [step, setStep] = useState(1)
-  const [userType, setUserType] = useState<'has_place' | 'needs_place' | ''>('')
+  const searchParams = useSearchParams()
+
+  const typeParam = searchParams.get('type')
+  const initialUserType: 'has_place' | 'needs_place' | '' =
+    typeParam === 'need' ? 'needs_place' : typeParam === 'have' ? 'has_place' : ''
+
+  const [step, setStep] = useState(initialUserType ? 2 : 1)
+  const [userType, setUserType] = useState<'has_place' | 'needs_place' | ''>(initialUserType)
 
   const totalSteps = userType === 'has_place' ? 4 : 3
 
@@ -326,5 +333,13 @@ export default function OnboardingPage() {
         )}
       </form>
     </div>
+  )
+}
+
+export default function OnboardingPage() {
+  return (
+    <Suspense fallback={<div className="mx-auto max-w-xl px-6 py-12">Loading…</div>}>
+      <OnboardingForm />
+    </Suspense>
   )
 }
