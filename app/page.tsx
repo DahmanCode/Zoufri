@@ -74,8 +74,7 @@ export default function LandingBento() {
                   <span className="w-8 h-8 rounded-full border-2 border-[#FFFDF8] bg-gradient-to-br from-[#7C6A50] to-[#B5573C] -ml-[10px]" />
                 </div>
                 <span>
-                  Trusted by 1,200+ people across Marrakesh, Casablanca &amp;
-                  Rabat
+                  Trusted by 1,200+ people across Morocco
                 </span>
               </div>
             </div>
@@ -128,8 +127,7 @@ export default function LandingBento() {
           <div className="bg-[#C08A3E] text-[#211F1A] rounded-[28px] px-[26px] py-[30px] flex flex-col justify-between min-h-[200px]">
             <div className="font-display text-[46px] font-medium">1,200+</div>
             <p className="text-[14.5px] max-w-[220px] leading-[1.5] text-[#211F1A]/75">
-              Roommate matches made across Marrakesh, Casablanca and Rabat
-              since launch.
+              Roommate matches made across Morocco since launch.
             </p>
           </div>
 
