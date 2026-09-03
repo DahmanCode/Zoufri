@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     title: "Zoufri — Find a roommate who actually fits your life",
     description: "Roommate matching across Morocco. Get matched on lifestyle, budget and habits — not just a photo.",
     images: ["/og-image.png"],
+    url: "https://zoufri.vercel.app",
   },
   icons: {
     icon: [
