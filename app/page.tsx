@@ -14,7 +14,7 @@ export default function LandingBento() {
 
   return (
     <div className="bg-[#E2DAC5] text-[#211F1A]">
-      <div className="max-w-[1240px] mx-auto px-6 pt-12 pb-24">
+      <div className="max-w-[1240px] mx-auto px-6 pt-4 pb-24">
 
         {/* HERO GRID */}
         <div className="grid grid-cols-1 min-[860px]:grid-cols-[1.55fr_1fr] gap-5">
