@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import SiteNav from "./components/site-nav";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${fraunces.variable} ${jakarta.variable} font-sans bg-[#E2DAC5] text-ink antialiased`}>
         <SiteNav />
         {children}
+        <Analytics />
       </body>
     </html>
   );
