@@ -13,7 +13,7 @@ export default function LandingBento() {
   const onboardingHref = `${ONBOARDING_ROUTE}?type=${mode}`;
 
   return (
-    <div className="bg-[#E2DAC5] text-[#211F1A]">
+    <div className=" text-[#211F1A]">
       <div className="max-w-[1240px] mx-auto px-6 pt-4 pb-24">
 
         {/* HERO GRID */}
