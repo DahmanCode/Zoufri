@@ -9,8 +9,13 @@ const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-display" });
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 
 export const metadata: Metadata = {
-  title: "Next.js + Supabase",
-  description: "Next.js app wired up with Tailwind CSS and Supabase auth/database.",
+  title: "Zoufri — Find a roommate who actually fits your life",
+  description: "Roommate matching across Morocco. Get matched on lifestyle, budget and habits — not just a photo.",
+  openGraph: {
+    title: "Zoufri — Find a roommate who actually fits your life",
+    description: "Roommate matching across Morocco. Get matched on lifestyle, budget and habits — not just a photo.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
